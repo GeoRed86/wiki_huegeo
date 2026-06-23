@@ -1,3 +1,5 @@
-# Wiki Windows server
+# Wiki Windows Server
 
-este es un wiki para entender windows server
+>En esta Wiki, revisaremos aspectos básicos tanto en la instalación, algunas funcionalidades que nos puede entregar Windows Server.
+
+>Usaremos VirtualBox para poder emular un Windows Server que será nuestro servidor y otro con windows 10 Pro que será un cliente en este caso.
