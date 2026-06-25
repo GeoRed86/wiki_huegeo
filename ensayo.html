@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Contenidos Multi-Lámina</title>
+    <style>
+        /* 1. CONFIGURACIÓN GENERAL Y COLORES MATIZADOS (NEGRO AZULADO) */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #0b0f19; /* Negro azulado de fondo profundo */
+            color: #e2e8f0;
+        }
+
+        /* 2. CONTENEDOR IZQUIERDO (MENÚ LATERAL) */
+        .sidebar {
+            width: 320px;
+            background-color: #0f172a; /* Azul oscuro pizarra */
+            border-right: 1px solid #1e293b;
+            display: flex;
+            flex-direction: column;
+            padding: 25px 15px;
+        }
+
+        .sidebar h2 {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            color: #38bdf8; /* Azul cielo para resaltar */
+            text-align: center;
+        }
+
+        .menu-btn {
+            background-color: #1e293b;
+            color: #94a3b8;
+            border: 1px solid transparent;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            background-color: #0f172a;
+            color: #f8fafc;
+            border-color: #38bdf8;
+        }
+
+        /* Botón del bloque activo */
+        .menu-btn.active {
+            background-color: #0284c7; /* Azul eléctrico */
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+        }
+
+        /* 3. CONTENEDOR DERECHO */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #0b0f19;
+        }
+
+        /* 4. BARRA SUPERIOR DE NAVEGACIÓN */
+        .nav-bar {
+            height: 70px;
+            background-color: #0f172a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .nav-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #f1f5f9;
+        }
+
+        .nav-btn {
+            background-color: #1e293b;
+            color: #38bdf8;
+            border: 1px solid #38bdf8;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #38bdf8;
+            color: #0f172a;
+        }
+
+        /* 5. ÁREA DE LÁMINAS */
+        .slides-container {
+            flex: 1;
+            position: relative;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Cada lámina individual */
+        .slide {
+            position: absolute;
+            width: 85%;
+            height: 80%;
+            background: #1e293b; /* Fondo de la tarjeta */
+            border: 1px solid #334155;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            display: none; /* Ocultas por defecto */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Clase activa para mostrar solo la lámina correspondiente */
+        .slide.active {
+            display: flex;
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            color: #38bdf8;
+            margin-bottom: 15px;
+        }
+
+        .slide p {
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2>Módulos</h2>
+        <button class="menu-btn active" onclick="cambiarBloque(0)">1. Introducción</button>
+        <button class="menu-btn" onclick="cambiarBloque(1)">2. Historia</button>
+        <button class="menu-btn" onclick="cambiarBloque(2)">3. Conceptos Clave</button>
+        <button class="menu-btn" onclick="cambiarBloque(3)">4. Herramientas</button>
+        <button class="menu-btn" onclick="cambiarBloque(4)">5. Casos Prácticos</button>
+        <button class="menu-btn" onclick="cambiarBloque(5)">6. Conclusión</button>
+    </aside>
+
+    <main class="main-content">
+        
+        <nav class="nav-bar">
+            <button class="nav-btn" onclick="navegarSlide(-1)">◀ Anterior</button>
+            <div class="nav-title" id="visor-contador">Módulo 1 - Lámina 1 / 10</div>
+            <button class="nav-btn" onclick="navegarSlide(1)">Siguiente ▶</button>
+        </nav>
+
+        <section class="slides-container" id="contenedor-laminas">
+            </section>
+
+    </main>
+
+    <script>
+        // 1. VARIABLES DE ESTADO
+        let bloqueActual = 0;  // Controla cuál de los 6 botones está seleccionado (0 a 5)
+        let slideActual = 0;   // Controla cuál de las 10 láminas internas se está viendo (0 a 9)
+
+        // Nombres de los 6 temas del menú izquierdo
+        const nombresBloques = [
+            "Introducción", "Historia", "Conceptos Clave", 
+            "Herramientas", "Casos Prácticos", "Conclusión"
+        ];
+
+        // 2. INYECCIÓN AUTOMÁTICA DE LÁMINAS (Generamos las 10 láminas para cada uno de los 6 bloques = 60 láminas)
+        const contenedor = document.getElementById('contenedor-laminas');
+        
+        for (let b = 0; b < 6; b++) {
+            for (let s = 0; s < 10; s++) {
+                const div = document.createElement('div');
+                // Guardamos los datos del bloque y slide en atributos del HTML para identificarlos fácilmente
+                div.className = `slide`;
+                div.setAttribute('data-bloque', b);
+                div.setAttribute('data-slide', s);
+                
+                // Estructura interna de la lámina
+                div.innerHTML = `
+                    <h3>${nombresBloques[b]}</h3>
+                    <h4 style="color: #94a3b8; margin-bottom: 20px;">Lámina ${s + 1}</h4>
+                    <p>Este es el contenido detallado correspondiente a la lámina número ${s + 1} del módulo de ${nombresBloques[b]}. Aquí puedes añadir textos, imágenes o gráficos.</p>
+                `;
+                contenedor.appendChild(div);
+            }
+        }
+
+        // 3. FUNCIÓN PARA ACTUALIZAR LA PANTALLA VISUALMENTE
+        function actualizarPantalla() {
+            // Ocultar todas las láminas
+            const todasLasLaminas = document.querySelectorAll('.slide');
+            todasLasLaminas.forEach(l => l.classList.remove('active'));
+
+            // Quitar estado activo de los botones laterales
+            const todosLosBotones = document.querySelectorAll('.menu-btn');
+            todosLosBotones.forEach(btn => btn.classList.remove('active'));
+
+            // Activar la lámina exacta que coincida con el bloque y slide actual
+            const laminaActiva = document.querySelector(`.slide[data-bloque="${bloqueActual}"][data-slide="${slideActual}"]`);
+            if (laminaActiva) laminaActiva.classList.add('active');
+
+            // Activar el botón del menú lateral correspondiente
+            todosLosBotones[bloqueActual].classList.add('active');
+
+            // Actualizar el texto del contador superior
+            const contador = document.getElementById('visor-contador');
+            contador.innerText = `Módulo ${bloqueActual + 1}: ${nombresBloques[bloqueActual]} — Lámina ${slideActual + 1} de 10`;
+        }
+
+        // 4. FUNCIÓN PARA LOS BOTONES SUPERIORES (ANTERIOR / SIGUIENTE)
+        function navegarSlide(direccion) {
+            slideActual += direccion;
+
+            // Si retrocedemos más allá de la lámina 1 (índice 0), saltamos al bloque anterior a su última lámina
+            if (slideActual < 0) {
+                if (bloqueActual > 0) {
+                    bloqueActual--;
+                    slideActual = 9; // Va a la última lámina (10) del bloque anterior
+                } else {
+                    slideActual = 0; // Se queda en la primera si ya no hay más bloques atrás
+                }
+            } 
+            // Si avanzamos más allá de la lámina 10 (índice 9), pasamos al siguiente bloque a su primera lámina
+            else if (slideActual > 9) {
+                if (bloqueActual < 5) {
+                    bloqueActual++;
+                    slideActual = 0; // Inicia en la primera lámina del nuevo bloque
+                } else {
+                    slideActual = 9; // Se queda en la última si ya es el final de todo
+                }
+            }
+
+            actualizarPantalla();
+        }
+
+        // 5. FUNCIÓN PARA CAMBIAR DIRECTAMENTE DESDE EL MENÚ LATERAL
+        function cambiarBloque(indiceBloque) {
+            bloqueActual = indiceBloque;
+            slideActual = 0; // Al cambiar de tema, siempre empezamos desde la lámina 1 del tema seleccionado
+            actualizarPantalla();
+        }
+
+        // Ejecución inicial al cargar la página por primera vez
+        actualizarPantalla();
+    </script>
+</body>
+</html>

@@ -4,7 +4,7 @@
 
 >Usaremos VirtualBox para poder emular un Windows Server que será nuestro servidor y otro con windows 10 Pro que será un cliente en este caso.
 
-Acá dejo los enlaces para lo que usaremos:
+Acá dejo los enlaces de descarga para lo que necesitamos:
 
 <!-- [![GitHub](https://img.shields.io/badge/GitHub-Repositorio-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tu-usuario/tu-repo) aca esta para poner mi repositorio-->
 
