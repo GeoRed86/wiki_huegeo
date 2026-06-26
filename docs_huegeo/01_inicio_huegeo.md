@@ -29,3 +29,59 @@
 </div>
 
 - Link Windows 10: [Windows 10](https://www.microsoft.com/en-us/software-download/windows10). 
+
+>Una vez apretes para descargar.
+
+<div align="center">
+    <p>Empezará la descarga de "MediaCreationTool", con esto podremos descargar Windows 10.</p> 
+    <img src="./img_huegeo/img_inicio/descarga_win10_2.png" alt="mediacreation" width="70%">
+</div>
+
+>Ejecutamos la Descarga.
+
+<div align="center">
+    <p>Una vez terminada la descarga, buscamos la aplicación en la carpeta donde se guardo y ejecutamos como administrador.</p> 
+    <img src="./img_huegeo/img_inicio/descarga_win10_3.png" alt="ejecutar" width="70%">
+</div>
+
+>Seguimos los pasos.
+
+<div align="center">
+    <p>Una vez dentro, seguimos los pasos que se muestran en las siguientes imagenes. Aceptar los terminos y condiciones, elegimos lo que queremos hacer, seleccionamos el idioma y la arquitectura de Windows y por último marcamos que queremos una iso de windows 10.</p> 
+    <img src="./img_huegeo/img_inicio/descarga_win10_4.png" alt="terminos" width="70%">
+    <img src="./img_huegeo/img_inicio/descarga_win10_5.png" alt="creacion" width="70%">
+    <img src="./img_huegeo/img_inicio/descarga_win10_6.png" alt="arquitectura" width="70%">
+    <img src="./img_huegeo/img_inicio/descarga_win10_7.png" alt="iso" width="70%">
+</div>
+
+>Comienza la descarga de Windows 10.
+
+<div align="center">
+    <p>Finalmente comenzara la descarga de Windows 10, solo falta decidir donde guardaras la iso.</p> 
+    <img src="./img_huegeo/img_inicio/descarga_win10_8.png" alt="listo" width="70%">
+</div>
+
+## Descargar Virtualbox.
+
+<div align="center">
+    <p>Y por último pero muy importe, descargarmos virtualbox, link de descaga bajo la imagen, luego de entrar a la pagina, solo falta elegir la plataforma en la cual lo usarás, en este caso Windows.</p> 
+    <img src="./img_huegeo/img_inicio/virtualbox_1.png" alt="virtualbox" width="70%">
+</div>
+
+- Link Virtualbox: [Virtualbox](https://www.virtualbox.org/wiki/Downloads). 
+
+
+
+- [x] Tarea completada
+- [ ] Tarea pendiente
+
+*texto de tipo cursivo* o **texto en negritas**
+
+| columna 1 | columna 2 | columna 3 |
+| :--- | :---: | ---: |
+| geovanni | quinteros | huerta |
+
+<div align="center">
+    <p>.</p> 
+    <img src="./img_huegeo/" alt="" width="70%">
+</div>
