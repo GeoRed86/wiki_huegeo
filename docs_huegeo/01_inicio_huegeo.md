@@ -1,6 +1,6 @@
 # Introducción.
 
->En esta ocacion podremos revisar un par de caracteristicas de Windows server, tambien realizar una configuración básica para estar listos a usarlo, adicionalmente configuraremos una red privada, con acceso limitado a usuarios especificos, entre otras cosas. 
+>"Simularemos la infraestructura de dominio de una empresa mediante el despliegue de dos máquinas virtuales en VirtualBox: un servidor Windows Server para la administración centralizada de la red y un cliente Windows 10 Pro que actuará como la nueva estación de trabajo a integrar en el dominio."
 
 >Para lograr nuestro objetivo, necesitaremos 3 elementos: 
 
@@ -8,9 +8,23 @@
 - Windows 10 Pro.
 - VirtualBox.
 
->Cada uno de esto elementos tendran un protagonismo clave en nuetra tarea. Por un lado Windows server será nuestro protagonista, ya este mismo sera el administrador de nuestra red, tambien necesitaremos un usuario, el cual será en este caso Windows 10, tomar en cuenta que dentro de la instalacion de Windows 10 se enciuentran mas distribuciones de esta misma, y finalmente el programa que hara todo esto posible, VirtualBox, aca podremos montar las imagenes .iso antes mencionadas y haremos nuestra demostracion antes descrita. 
+## Marco Conceptual.
 
->Entoces empezamos con la Descarga de los tres elemntos que vamos a usar.
+>Reproduciremos en un entorno virtualizado(virtualbox), la infraestuctura de dominio que utiliza una organización. Para esto levantaremos 2 maquinas virtuales en v,irtualbox.
+
+- Un servidor (Windows Server), que centralizará la administracion de la red.
+- Un cliente (Windows 10 Pro), que representará una estacion de trabajo de un usuario que se incorpora al dominio.
+
+### Conceptos Fundamentales: 
+
+- **Servidor:** Equipo que provee servicios a otros (cuentas de usuario, permisos, servicios de red).
+- **Dominio:** Repositorio central de identidades (usuarios y equipos).
+- **Active directory:** Servicio que administra el dominio y almacena sus objetos.
+- **DNS:** Servicio de resolucion de nombres; traduce nombres (**SRV-DC01**) a direcciones IP (**192.168.10.10**).
+- **DHCP:** Servicio que asigna direcciones IP de forma automatica a los equipos de la red.
+- **GPO (politicas de grupo):** Regla de configuración que se le define en el servidor y se aplica de forma centralizada a usuarios y equipos.
+
+
 
 ## Descargar Windows Server.
 
@@ -70,9 +84,17 @@
 
 - Link Virtualbox: [Virtualbox](https://www.virtualbox.org/wiki/Downloads). 
 
+<div align="center">
+    <p>Al ingresar en la instalacion de virtualbox solo hay que mantener todo lo que viene por defecto, una pequeña ayuda es dejar todo tal cual se muestra en las imagenes.</p> 
+    <img src="./img_huegeo/img_inicio/virtualbox_2.png" alt="welcome" width="70%">
+    <img src="./img_huegeo/img_inicio/virtualbox_3.png" alt="acepto" width="70%">
+    <img src="./img_huegeo/img_inicio/virtualbox_4.png" alt="next" width="70%">
+    <img src="./img_huegeo/img_inicio/virtualbox_5.png" alt="next2" width="70%">
+    <img src="./img_huegeo/img_inicio/virtualbox_6.png" alt="next3" width="70%">
+    <img src="./img_huegeo/img_inicio/virtualbox_7.png" alt="instalar" width="70%">
+</div>
 
-
-- [x] Tarea completada
+<!-- - [x] Tarea completada
 - [ ] Tarea pendiente
 
 *texto de tipo cursivo* o **texto en negritas**
@@ -84,4 +106,4 @@
 <div align="center">
     <p>.</p> 
     <img src="./img_huegeo/" alt="" width="70%">
-</div>
+</div> -->
