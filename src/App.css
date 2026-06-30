@@ -1,19 +1,20 @@
 .wiki-shell {
   display: flex;
   min-height: 100vh;
-  background: linear-gradient(135deg, #030712, #0b0f19 60%, #111827);
-  color: #e5e7eb;
+  background: radial-gradient(circle at top left, #0f1720 0%, #060809 45%, #020303 100%);
+  color: #f3f7f2;
 }
 
 .wiki-sidebar {
   width: 290px;
-  background: #020617;
-  border-right: 1px solid #1f2937;
+  background: #030503;
+  border-right: 1px solid #1f3d2d;
   padding: 24px 16px;
+  box-shadow: inset -1px 0 0 rgba(66, 255, 148, 0.15);
 }
 
 .wiki-brand {
-  color: #38bdf8;
+  color: #6dff9f;
   font-size: 1.15rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -39,14 +40,16 @@
 }
 
 .wiki-tab:hover {
-  border-color: #38bdf8;
+  border-color: #6dff9f;
   color: #f8fafc;
+  box-shadow: 0 0 0 1px rgba(109, 255, 159, 0.2);
 }
 
 .wiki-tab.active {
-  background: #0f766e;
-  color: white;
-  box-shadow: 0 8px 18px rgba(15, 118, 110, 0.24);
+  background: #0f2f1b;
+  color: #8dffb3;
+  border-color: #6dff9f;
+  box-shadow: 0 0 18px rgba(109, 255, 159, 0.18);
 }
 
 .wiki-main {
@@ -58,14 +61,15 @@
 }
 
 .wiki-header {
-  background: rgba(17, 24, 39, 0.95);
-  border: 1px solid #334155;
+  background: rgba(7, 10, 9, 0.96);
+  border: 1px solid #274a32;
   border-radius: 14px;
   padding: 18px 22px;
+  box-shadow: inset 0 0 0 1px rgba(109, 255, 159, 0.12);
 }
 
 .wiki-header h1 {
-  color: #38bdf8;
+  color: #6dff9f;
   font-size: 1.5rem;
   margin: 0 0 6px;
 }
@@ -86,11 +90,11 @@
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 20px;
-  background: rgba(17, 24, 39, 0.96);
-  border: 1px solid #334155;
+  background: rgba(8, 11, 10, 0.96);
+  border: 1px solid #274a32;
   border-radius: 16px;
   padding: 20px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
 }
 
 .wiki-card-image {
@@ -98,11 +102,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #111827, #020617);
+  background: linear-gradient(135deg, #0e1712, #020303);
   border-radius: 12px;
-  border: 1px solid #334155;
+  border: 1px solid #2e5a3a;
   overflow: hidden;
   padding: 10px;
+  box-shadow: inset 0 0 20px rgba(109, 255, 159, 0.08);
 }
 
 .wiki-card-image img {
@@ -114,7 +119,7 @@
 }
 
 .wiki-card-meta {
-  color: #5eead4;
+  color: #8dffb3;
   font-size: 0.9rem;
   margin-bottom: 8px;
   text-transform: uppercase;
@@ -122,7 +127,7 @@
 }
 
 .wiki-card-body h2 {
-  color: #38bdf8;
+  color: #6dff9f;
   margin-top: 0;
   margin-bottom: 10px;
 }
@@ -136,24 +141,25 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(17, 24, 39, 0.95);
-  border: 1px solid #334155;
+  background: rgba(8, 11, 10, 0.95);
+  border: 1px solid #274a32;
   border-radius: 12px;
   padding: 12px 16px;
 }
 
 .wiki-control-btn {
-  border: 1px solid #38bdf8;
-  background: #111827;
-  color: #38bdf8;
+  border: 1px solid #6dff9f;
+  background: #0b130d;
+  color: #6dff9f;
   border-radius: 6px;
   padding: 10px 14px;
   cursor: pointer;
 }
 
 .wiki-control-btn:hover {
-  background: #38bdf8;
-  color: #020617;
+  background: #6dff9f;
+  color: #020303;
+  box-shadow: 0 0 12px rgba(109, 255, 159, 0.25);
 }
 
 .wiki-counter {
@@ -173,8 +179,8 @@
   gap: 10px;
   align-items: flex-start;
   text-align: left;
-  background: rgba(17, 24, 39, 0.95);
-  border: 1px solid #334155;
+  background: rgba(8, 11, 10, 0.95);
+  border: 1px solid #274a32;
   border-radius: 12px;
   padding: 10px;
   color: #e5e7eb;
@@ -182,8 +188,8 @@
 }
 
 .wiki-mini-card.selected {
-  border-color: #38bdf8;
-  box-shadow: inset 0 0 0 1px #38bdf8;
+  border-color: #6dff9f;
+  box-shadow: inset 0 0 0 1px #6dff9f;
 }
 
 .wiki-mini-thumb {
@@ -210,7 +216,7 @@
 }
 
 .wiki-mini-copy strong {
-  color: #38bdf8;
+  color: #6dff9f;
 }
 
 .wiki-mini-copy span {
@@ -224,8 +230,8 @@
 }
 
 .wiki-empty {
-  background: rgba(17, 24, 39, 0.95);
-  border: 1px solid #334155;
+  background: rgba(8, 11, 10, 0.95);
+  border: 1px solid #274a32;
   border-radius: 12px;
   padding: 18px;
   color: #cbd5e1;
