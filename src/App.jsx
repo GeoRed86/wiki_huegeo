@@ -109,81 +109,93 @@ function App() {
 
   return (
     <div className="wiki-shell">
-      <aside className="wiki-sidebar">
-        <div className="wiki-brand">Wiki Windows Server</div>
-        <nav className="wiki-nav">
-          {sections.map((item, index) => (
-            <button
-              key={item.id}
-              type="button"
-              className={`wiki-tab ${index === activeSection ? 'active' : ''}`}
-              onClick={() => {
-                setActiveSection(index)
-                setActiveCard(0)
-              }}
-            >
-              {item.title}
-            </button>
-          ))}
-        </nav>
-      </aside>
+      <div className="wiki-layout">
+        <aside className="wiki-sidebar">
+          <div className="wiki-brand">Wiki Windows Server</div>
+          <nav className="wiki-nav">
+            {sections.map((item, index) => (
+              <button
+                key={item.id}
+                type="button"
+                className={`wiki-tab ${index === activeSection ? 'active' : ''}`}
+                onClick={() => {
+                  setActiveSection(index)
+                  setActiveCard(0)
+                }}
+              >
+                {item.title}
+              </button>
+            ))}
+          </nav>
+        </aside>
 
-      <main className="wiki-main">
-        <header className="wiki-header">
-          <div>
-            <h1>{section.title}</h1>
-            <p>{section.description}</p>
-          </div>
-        </header>
+        <main className="wiki-main">
+          <header className="wiki-header">
+            <div>
+              <h1>{section.title}</h1>
+              <p>{section.description}</p>
+            </div>
+          </header>
 
-        <section className="wiki-content">
-          {card ? (
-            <>
-              <div className="wiki-card">
-                <div className="wiki-card-image">
-                  <img src={card.image} alt={card.title} />
+          <section className="wiki-content">
+            {card ? (
+              <>
+                <div className="wiki-card">
+                  <div className="wiki-card-image">
+                    <img src={card.image} alt={card.title} />
+                  </div>
+                  <div className="wiki-card-body">
+                    <div className="wiki-card-meta">Imagen {activeCard + 1} de {section.cards.length}</div>
+                    <h2>{card.title}</h2>
+                    <p>{card.text}</p>
+                  </div>
                 </div>
-                <div className="wiki-card-body">
-                  <div className="wiki-card-meta">Imagen {activeCard + 1} de {section.cards.length}</div>
-                  <h2>{card.title}</h2>
-                  <p>{card.text}</p>
-                </div>
-              </div>
 
-              <div className="wiki-controls">
-                <button type="button" className="wiki-control-btn" onClick={() => changeCard(-1)}>
-                  ◀ Anterior
-                </button>
-                <span className="wiki-counter">Ficha {activeCard + 1} / {section.cards.length}</span>
-                <button type="button" className="wiki-control-btn" onClick={() => changeCard(1)}>
-                  Siguiente ▶
-                </button>
-              </div>
-
-              <div className="wiki-gallery">
-                {section.cards.map((item, index) => (
-                  <button
-                    key={`${item.title}-${index}`}
-                    type="button"
-                    className={`wiki-mini-card ${index === activeCard ? 'selected' : ''}`}
-                    onClick={() => setActiveCard(index)}
-                  >
-                    <div className="wiki-mini-thumb">
-                      <img src={item.image} alt={item.title} />
-                    </div>
-                    <div className="wiki-mini-copy">
-                      <strong>{item.title}</strong>
-                      <span>{item.text}</span>
-                    </div>
+                <div className="wiki-controls">
+                  <button type="button" className="wiki-control-btn" onClick={() => changeCard(-1)}>
+                    ◀ Anterior
                   </button>
-                ))}
-              </div>
-            </>
-          ) : (
-            <div className="wiki-empty">No hay contenido disponible para esta sección.</div>
-          )}
-        </section>
-      </main>
+                  <span className="wiki-counter">Ficha {activeCard + 1} / {section.cards.length}</span>
+                  <button type="button" className="wiki-control-btn" onClick={() => changeCard(1)}>
+                    Siguiente ▶
+                  </button>
+                </div>
+
+                <div className="wiki-gallery">
+                  {section.cards.map((item, index) => (
+                    <button
+                      key={`${item.title}-${index}`}
+                      type="button"
+                      className={`wiki-mini-card ${index === activeCard ? 'selected' : ''}`}
+                      onClick={() => setActiveCard(index)}
+                    >
+                      <div className="wiki-mini-thumb">
+                        <img src={item.image} alt={item.title} />
+                      </div>
+                      <div className="wiki-mini-copy">
+                        <strong>{item.title}</strong>
+                        <span>{item.text}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="wiki-empty">No hay contenido disponible para esta sección.</div>
+            )}
+          </section>
+        </main>
+      </div>
+
+      <footer className="wiki-footer">
+        <p>© 2026 Wiki Windows Server. Todos los derechos reservados.</p>
+        <div className="wiki-footer-links">
+          <a href="mailto:ghuertaquinteros@gmail.com">ghuertaquinteros@gmail.com</a>
+          <a href="https://github.com/GeoRed86/wiki_huegeo.git" target="_blank" rel="noreferrer">
+            https://github.com/GeoRed86/wiki_huegeo.git
+          </a>
+        </div>
+      </footer>
     </div>
   )
 }
