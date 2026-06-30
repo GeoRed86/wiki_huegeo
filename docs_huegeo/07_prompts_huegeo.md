@@ -15,3 +15,9 @@
 ## Prompt para actualizar la paleta de colores con estilo neon verdoso
 
 >Modifica la paleta de colores de la interfaz wiki existente a tonos oscuros profundos de negro con bordes y acentos neon verdosos (#6dff9f). Reemplaza todos los acentos azules por verde neón, actualiza los fondos a negros más profundos, mantén la estructura y funcionalidad, y crea una estética más visual, moderna y contrastada que se vea profesional y tecnológica.
+
+# Cuerto cambio con IA
+
+## Prompt para adaptar la interfaz a pantallas pequeñas
+
+>Actúa como un diseñador front-end experto en diseño responsive. Ajusta esta interfaz para que se vea correctamente en computadoras, tablets y celulares. Prioriza una distribución adaptable, navegación legible, botones accesibles, espaciado adecuado y una experiencia cómoda en pantallas pequeñas, sin perder la estética actual de la wiki ni la claridad del contenido.
