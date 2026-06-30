@@ -1,121 +1,190 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
+import md01 from '../docs_huegeo/01_inicio_huegeo.md?raw'
+import md02 from '../docs_huegeo/02_instalacion_huegeo.md?raw'
+import md03 from '../docs_huegeo/03_active_directory_huegeo.md?raw'
+import md04 from '../docs_huegeo/04_cliente_dominio_huegeo.md?raw'
+import md05 from '../docs_huegeo/05_servicios_red_huegeo.md?raw'
+import md06 from '../docs_huegeo/06_gpo_huegeo.md?raw'
+
+const imageModules = import.meta.glob('../docs_huegeo/img_huegeo/**/*.{png,jpg,jpeg,webp}', {
+  eager: true,
+  import: 'default',
+})
+
+const imageMap = Object.entries(imageModules).reduce((acc, [key, value]) => {
+  const normalizedKey = key.replace('../docs_huegeo/img_huegeo/', '')
+  acc[normalizedKey] = value
+  return acc
+}, {})
+
+const markdownSections = [
+  {
+    id: 'inicio',
+    title: '01. Inicio',
+    description: 'Introducción a la infraestructura de dominio y a los recursos necesarios.',
+    markdown: md01,
+  },
+  {
+    id: 'instalacion',
+    title: '02. Instalación',
+    description: 'Configuración de máquinas virtuales, red interna y preparación del entorno.',
+    markdown: md02,
+  },
+  {
+    id: 'active-directory',
+    title: '03. Active Directory',
+    description: 'Instalación y configuración del servicio central del dominio.',
+    markdown: md03,
+  },
+  {
+    id: 'cliente-dominio',
+    title: '04. Cliente y dominio',
+    description: 'Creación de unidades organizativas, usuarios y grupos.',
+    markdown: md04,
+  },
+  {
+    id: 'servicios-red',
+    title: '05. Servicios de red',
+    description: 'Configuración de DHCP, red y unión del cliente al dominio.',
+    markdown: md05,
+  },
+  {
+    id: 'gpo',
+    title: '06. GPO',
+    description: 'Aplicación de políticas de grupo para controlar la experiencia del usuario.',
+    markdown: md06,
+  },
+]
+
+const cleanText = (value) =>
+  value
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+
+const resolveImage = (src) => {
+  const normalized = src.replace(/^\.\/img_huegeo\//, '').replace(/^img_huegeo\//, '').replace(/^\.\//, '')
+  return imageMap[normalized] ?? null
+}
+
+const buildGallery = (markdown, title) => {
+  const blocks = markdown.match(/<div align="center">[\s\S]*?<\/div>/g) ?? []
+
+  return blocks.flatMap((block) => {
+    const paragraphs = [...block.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/g)]
+      .map((match) => cleanText(match[1]))
+      .filter(Boolean)
+
+    const description = paragraphs.join(' ')
+    const images = [...block.matchAll(/<img[^>]+src=["']([^"']+)["'][^>]*>/g)].map((match) => match[1])
+
+    return images.map((src) => ({
+      title,
+      text: description || 'Paso de la guía técnica.',
+      image: resolveImage(src),
+    }))
+  }).filter((item) => item.image)
+}
+
+const sections = markdownSections.map((section) => ({
+  ...section,
+  cards: buildGallery(section.markdown, section.title),
+}))
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [activeSection, setActiveSection] = useState(0)
+  const [activeCard, setActiveCard] = useState(0)
+
+  const section = sections[activeSection]
+  const card = section.cards[activeCard] ?? null
+
+  const changeCard = (direction) => {
+    const total = section.cards.length
+    if (!total) return
+    const next = (activeCard + direction + total) % total
+    setActiveCard(next)
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Wiki Win Server</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="wiki-shell">
+      <aside className="wiki-sidebar">
+        <div className="wiki-brand">Wiki Windows Server</div>
+        <nav className="wiki-nav">
+          {sections.map((item, index) => (
+            <button
+              key={item.id}
+              type="button"
+              className={`wiki-tab ${index === activeSection ? 'active' : ''}`}
+              onClick={() => {
+                setActiveSection(index)
+                setActiveCard(0)
+              }}
+            >
+              {item.title}
+            </button>
+          ))}
+        </nav>
+      </aside>
 
-      <div className="ticks"></div>
+      <main className="wiki-main">
+        <header className="wiki-header">
+          <div>
+            <h1>{section.title}</h1>
+            <p>{section.description}</p>
+          </div>
+        </header>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <section className="wiki-content">
+          {card ? (
+            <>
+              <div className="wiki-card">
+                <div className="wiki-card-image">
+                  <img src={card.image} alt={card.title} />
+                </div>
+                <div className="wiki-card-body">
+                  <div className="wiki-card-meta">Imagen {activeCard + 1} de {section.cards.length}</div>
+                  <h2>{card.title}</h2>
+                  <p>{card.text}</p>
+                </div>
+              </div>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+              <div className="wiki-controls">
+                <button type="button" className="wiki-control-btn" onClick={() => changeCard(-1)}>
+                  ◀ Anterior
+                </button>
+                <span className="wiki-counter">Ficha {activeCard + 1} / {section.cards.length}</span>
+                <button type="button" className="wiki-control-btn" onClick={() => changeCard(1)}>
+                  Siguiente ▶
+                </button>
+              </div>
+
+              <div className="wiki-gallery">
+                {section.cards.map((item, index) => (
+                  <button
+                    key={`${item.title}-${index}`}
+                    type="button"
+                    className={`wiki-mini-card ${index === activeCard ? 'selected' : ''}`}
+                    onClick={() => setActiveCard(index)}
+                  >
+                    <div className="wiki-mini-thumb">
+                      <img src={item.image} alt={item.title} />
+                    </div>
+                    <div className="wiki-mini-copy">
+                      <strong>{item.title}</strong>
+                      <span>{item.text}</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="wiki-empty">No hay contenido disponible para esta sección.</div>
+          )}
+        </section>
+      </main>
+    </div>
   )
 }
 
