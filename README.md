@@ -1,21 +1,63 @@
 # Wiki Windows Server
 
->En esta wiki revisaremos aspectos básicos tanto de la instalación como de algunas funcionalidades que nos puede entregar Windows Server.
+Este proyecto presenta una guía práctica y visual sobre la implementación básica de un entorno con Windows Server, orientada a quienes quieren aprender sobre conceptos de infraestructura, Active Directory, dominio, servicios de red y políticas de grupo.
 
->Usaremos VirtualBox para emular un Windows Server que será nuestro servidor y otro con Windows 10 Pro que será un cliente en este caso.
+## ¿Qué contiene esta wiki?
 
-Acá dejo los enlaces de descarga para lo que necesitamos:
+La documentación está organizada en secciones que cubren:
 
-<!-- [![GitHub](https://img.shields.io/badge/GitHub-Repositorio-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tu-usuario/tu-repo) acá está para poner mi repositorio -->
+- Introducción a la infraestructura de dominio
+- Instalación y preparación del entorno
+- Configuración de Active Directory
+- Integración de clientes al dominio
+- Servicios de red fundamentales
+- Gestión de políticas de grupo (GPO)
 
-<p align="center">
-  <a href="https://www.microsoft.com/en-us/software-download/windows10">
-    <img src="https://img.shields.io/badge/Windows_10-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows 10">
-  </a>
-  <a href="https://www.microsoft.com/es-mx/evalcenter/download-windows-server-2025">
-    <img src="https://img.shields.io/badge/Windows_Server-005288?style=for-the-badge&logo=windows&logoColor=white" alt="Windows Server">
-  </a>
-  <a href="https://www.virtualbox.org/wiki/Downloads">
-    <img src="https://img.shields.io/badge/VirtualBox-183A61?style=for-the-badge&logo=virtualbox&logoColor=white" alt="VirtualBox">
-  </a>
-</p>
+El contenido se muestra en una interfaz tipo wiki, con navegación por secciones y fichas visuales que permiten revisar la información de forma más clara y atractiva.
+
+## Características del proyecto
+
+- Interfaz moderna y visual con estilo oscuro y acentos verdes neón
+- Diseño adaptable para computadoras, tablets y celulares
+- Contenido basado en documentos Markdown en la carpeta docs_huegeo
+- Integración de imágenes para complementar cada sección técnica
+- Fácil de ejecutar localmente con Vite + React
+
+## Estructura principal
+
+- src/: componente principal de la aplicación y estilos
+- docs_huegeo/: documentos Markdown y recursos visuales de la wiki
+- public/: archivos estáticos del proyecto
+
+## Requisitos
+
+- Node.js 18 o superior
+- npm o pnpm
+
+## Instalación y ejecución
+
+```bash
+npm install
+npm run dev
+```
+
+Luego abre la URL que indique Vite en tu navegador.
+
+## Scripts disponibles
+
+```bash
+npm run dev     # inicia el servidor de desarrollo
+npm run build   # genera la versión de producción
+npm run preview # previsualiza la build generada
+```
+
+## Recursos útiles
+
+- Windows 10: https://www.microsoft.com/en-us/software-download/windows10
+- Windows Server: https://www.microsoft.com/es-mx/evalcenter/download-windows-server-2025
+- VirtualBox: https://www.virtualbox.org/wiki/Downloads
+
+## Contacto y repositorio
+
+- Correo: ghuertaquinteros@gmail.com
+- Repositorio GitHub: https://github.com/GeoRed86/wiki_huegeo.git
